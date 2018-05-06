@@ -7,24 +7,32 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ikovac.timepickerwithseconds.MyTimePickerDialog;
-import com.programmerbaper.fokus.R;
 import com.programmerbaper.focus.entity.Jam;
+import com.programmerbaper.fokus.R;
+
+import cn.iwgang.countdownview.CountdownView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Jam jam ;
+    private Jam jam;
+    private CountdownView countDown;
+    private Button start;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button start = findViewById(R.id.start);
+        start = findViewById(R.id.start);
+        countDown = findViewById(R.id.count_down);
+
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 askTime();
+
 
             }
         });
@@ -38,10 +46,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTimeSet(com.ikovac.timepickerwithseconds.TimePicker view, int hourOfDay, int minute, int seconds) {
 
-                jam = new Jam(hourOfDay,minute,seconds) ;
+                jam = new Jam(hourOfDay, minute, seconds);
 
                 Toast.makeText(MainActivity.this,
-                        "Jam diset untuk " + jam.getJam() + " jam " + jam.getMenit() + " menit " + jam.getDetik() +" detik.", Toast.LENGTH_LONG).show();
+                        "Focus has been set for " + jam.getJam() + " hours " + jam.getMenit() + " minutes " + jam.getDetik() + " seconds.", Toast.LENGTH_LONG).show();
+
+                start.setVisibility(View.GONE);
+                countDown.setVisibility(View.VISIBLE);
+                countDown.start(convertJamToMilisecond(jam));
+                countDown.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
+                    @Override
+                    public void onEnd(CountdownView cv) {
+                        Toast.makeText(MainActivity.this,
+                               "The focus time has ended", Toast.LENGTH_LONG).show();
+                    }
+                });
 
 
             }
@@ -50,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
         timePickerDialog.show();
         timePickerDialog.setTitle("Focus length");
 
+    }
 
+    private int convertJamToMilisecond(Jam jam) {
 
-
-
-
+        return (jam.getJam() * 3600 + jam.getMenit() * 60 + jam.getDetik()) * 1000  ;
     }
 
 }

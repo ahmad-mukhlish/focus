@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,8 +11,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textColor="@color/colorAccent"
         android:background="@color/colorPrimary"
-        android:text="@string/btn_start" />
+        android:text="@string/btn_start"
+        android:textColor="@color/colorAccent" />
+
+    <cn.iwgang.countdownview.CountdownView
+        android:id="@+id/count_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:isShowHour="true"
+        app:isShowMinute="true"
+        app:isShowSecond="true"
+        app:isTimeTextBold="true"
+        app:suffixGravity="bottom"
+        app:suffixHour="hr"
+        app:suffixMinute="mnt"
+        app:suffixSecond="scnd"
+        app:suffixTextColor="@color/colorPrimaryDark"
+        app:suffixTextSize="10sp"
+        app:timeTextColor="@color/colorPrimary"
+        app:timeTextSize="40sp" />
 
 </RelativeLayout>
