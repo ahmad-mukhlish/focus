@@ -55,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
     }
 
     private void askTime() {
@@ -110,6 +107,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+        Toast.makeText(this, "You've failed to focus...", Toast.LENGTH_LONG).show();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Toast.makeText(this, "You've failed to focus...", Toast.LENGTH_LONG).show();
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Toast.makeText(this, "You've failed to focus...", Toast.LENGTH_LONG).show();
+        super.onDestroy();
     }
 }
 
