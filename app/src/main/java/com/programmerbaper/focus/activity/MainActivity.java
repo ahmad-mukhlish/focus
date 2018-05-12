@@ -1,6 +1,12 @@
 package com.programmerbaper.focus.activity;
 
+import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +20,14 @@ import cn.iwgang.countdownview.CountdownView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Jam jam;
-    private CountdownView countDown;
-    private Button start;
+    private CountdownView mCountDown;
+    private Button mStart;
+
+    private Context mContext;
+    private Activity mActivity;
+    private NotificationManager mNotificationManager;
+
+    private Jam mJam;
 
 
     @Override
@@ -24,10 +35,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        start = findViewById(R.id.start);
-        countDown = findViewById(R.id.count_down);
+        mContext = getApplicationContext();
+        mActivity = MainActivity.this;
 
-        start.setOnClickListener(new View.OnClickListener() {
+        mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+
+        mStart = findViewById(R.id.start);
+        mCountDown = findViewById(R.id.count_down);
+
+        mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -38,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
     }
 
     private void askTime() {
@@ -46,19 +66,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTimeSet(com.ikovac.timepickerwithseconds.TimePicker view, int hourOfDay, int minute, int seconds) {
 
-                jam = new Jam(hourOfDay, minute, seconds);
+                mJam = new Jam(hourOfDay, minute, seconds);
 
                 Toast.makeText(MainActivity.this,
-                        "Focus has been set for " + jam.getJam() + " hours " + jam.getMenit() + " minutes " + jam.getDetik() + " seconds.", Toast.LENGTH_LONG).show();
+                        "Focus has been set for " + mJam.getJam() + " hours " + mJam.getMenit() + " minutes " + mJam.getDetik() + " seconds.", Toast.LENGTH_LONG).show();
 
-                start.setVisibility(View.GONE);
-                countDown.setVisibility(View.VISIBLE);
-                countDown.start(convertJamToMilisecond(jam));
-                countDown.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
+                mStart.setVisibility(View.GONE);
+                mCountDown.setVisibility(View.VISIBLE);
+                mCountDown.start(convertJamToMilisecond(mJam));
+                changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_NONE);
+                mCountDown.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
                     @Override
                     public void onEnd(CountdownView cv) {
                         Toast.makeText(MainActivity.this,
-                               "The focus time has ended", Toast.LENGTH_LONG).show();
+                                "The focus time has ended", Toast.LENGTH_LONG).show();
+                        changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_ALL);
+
                     }
                 });
 
@@ -73,7 +96,20 @@ public class MainActivity extends AppCompatActivity {
 
     private int convertJamToMilisecond(Jam jam) {
 
-        return (jam.getJam() * 3600 + jam.getMenit() * 60 + jam.getDetik()) * 1000  ;
+        return (jam.getJam() * 3600 + jam.getMenit() * 60 + jam.getDetik()) * 1000;
     }
 
+
+    protected void changeInterruptionFiler(int interruptionFilter) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (mNotificationManager.isNotificationPolicyAccessGranted()) {
+                mNotificationManager.setInterruptionFilter(interruptionFilter);
+            } else {
+                Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+                startActivity(intent);
+            }
+        }
+    }
 }
+

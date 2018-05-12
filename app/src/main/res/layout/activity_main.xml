@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@color/colorPrimary"
+        android:fontFamily="@font/roboto_thin"
         android:text="@string/btn_start"
         android:textColor="@color/colorAccent" />
 
