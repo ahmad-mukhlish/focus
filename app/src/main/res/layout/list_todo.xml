@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/logo"/>
+
+    <TextView
+        android:id="@+id/todo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/roboto"
+        android:textSize="14sp"
+        android:textColor="@color/tulistodo"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:layout_weight="1"
+        android:text="To Do"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/roboto_black"
+            android:textSize="12sp"
+            android:textColor="@color/tulistodo"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1 Jan"/>
+
+        <TextView
+            android:id="@+id/jam"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/roboto_black"
+            android:textSize="10sp"
+            android:textColor="@color/tulistodo"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="00.00"/>
+    </LinearLayout>
+
+</LinearLayout>

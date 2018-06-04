@@ -3,4 +3,7 @@
     <color name="colorPrimary">#263238</color>
     <color name="colorPrimaryDark">#9fa8da</color>
     <color name="colorAccent">#eeeeee</color>
+    <color name="hijau">#73B650</color>
+    <color name="tulisabu">#A2A2A2</color>
+    <color name="tulistodo">#181743</color>
 </resources>

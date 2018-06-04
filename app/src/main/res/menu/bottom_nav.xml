@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/bnav_home"
+        android:enabled="true"
+        android:icon="@drawable/baseline_home_white_24"
+        android:title="Home"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/bnav_todo"
+        android:enabled="true"
+        android:icon="@drawable/baseline_event_white_24"
+        android:title="To Do"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/bnav_achiev"
+        android:enabled="true"
+        android:icon="@drawable/baseline_score_white_24"
+        android:title="Achievement"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/bnav_about"
+        android:enabled="true"
+        android:icon="@drawable/baseline_face_white_24"
+        android:title="About Us"
+        app:showAsAction="ifRoom" />
+</menu>
