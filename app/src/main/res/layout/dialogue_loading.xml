@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/colorAccent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_marginStart="20dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/jam" />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Loading... "
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
