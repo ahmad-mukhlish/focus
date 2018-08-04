@@ -26,8 +26,9 @@
         <item name="colorControlActivated">#646060</item>
         <item name="colorControlHighlight">#646060</item>
         <item name="android:textColorPrimary">#ffffff</item>
-        <item name="android:textColorHint">@color/tulisabu</item>
+        <item name="android:textColorHint">@color/greyish</item>
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textCursorDrawable">@drawable/color_cursor</item>
         <item name="android:textSize">14sp</item>
     </style>
 

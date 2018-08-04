@@ -5,21 +5,12 @@
     <string name="btn_start">Start</string>
     <string name="sign_up">Sign Up</string>
 
-    <string name="forgot_pass">Forgot Password</string>
-    <string name="forgot_pass2">Forgot Password?</string>
-
-    <string name="send_email_text">Please enter the email you used at the time of registration to get the
-        password reset instructions.</string>
-
-    <string name="send_pass">Send Password</string>
-    <string name="enter_email">Enter Email</string>
-    <string name="username">Username</string>
-
+    <string name="email">Email</string>
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
-    <string name="confirm_pass">Confirm Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="login">Login</string>
-    <string name="dont_have_acc">Do not Have Account?</string>
+    <string name="dont_have_account">Do not Have Account?</string>
     <string name="task_add">Add Task</string>
     <string name="task_name">Task Name</string>
     <string name="insert_date">Insert Date</string>
@@ -32,7 +23,7 @@
     <string name="placeholder_focus_time">1.50</string>
     <string name="placeholder_date">1 Jan</string>
 
-    <string name="label_no_internet_connection">Tidak ada koneksi internet..</string>
+    <string name="label_no_internet_connection">No internet connections</string>
 
     <!--drawers-->
     <string name="drawer_developed_by">Developed by The Deadliners Squad</string>

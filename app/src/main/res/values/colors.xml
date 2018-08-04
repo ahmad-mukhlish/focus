@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#263238</color>
-    <color name="colorPrimaryDark">#9fa8da</color>
+    <color name="colorPrimary">#3a3636</color>
+    <color name="colorPrimaryDark">#666666</color>
     <color name="colorAccent">#eeeeee</color>
-    <color name="hijau">#73B650</color>
-    <color name="tulisabu">#A2A2A2</color>
-    <color name="tulistodo">#181743</color>
+    <color name="green">#73B650</color>
+    <color name="greyish">#A2A2A2</color>
+    <color name="todo">#181743</color>
+    <color name="backgroundLogin">#636161</color>
 </resources>

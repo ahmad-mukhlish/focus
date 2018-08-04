@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
 
-            email = findViewById(R.id.edUsername);
+            email = findViewById(R.id.email);
             password = findViewById(R.id.edPassword);
             Button login = findViewById(R.id.login);
 
