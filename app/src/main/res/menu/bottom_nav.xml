@@ -4,28 +4,28 @@
     <item
         android:id="@+id/bnav_home"
         android:enabled="true"
-        android:icon="@drawable/baseline_home_white_24"
+        android:icon="@drawable/home_white"
         android:title="Home"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/bnav_todo"
         android:enabled="true"
-        android:icon="@drawable/baseline_event_white_24"
+        android:icon="@drawable/event_white"
         android:title="To Do"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/bnav_achiev"
         android:enabled="true"
-        android:icon="@drawable/baseline_score_white_24"
+        android:icon="@drawable/score_white"
         android:title="Achievement"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/bnav_about"
         android:enabled="true"
-        android:icon="@drawable/baseline_face_white_24"
+        android:icon="@drawable/face_white"
         android:title="About Us"
         app:showAsAction="always" />
 </menu>

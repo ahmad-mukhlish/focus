@@ -3,27 +3,27 @@
     <group android:checkableBehavior="all">
         <item
             android:id="@+id/nav_todo"
-            android:icon="@drawable/baseline_event_white_24"
+            android:icon="@drawable/event_white"
             android:title="To Do" />
 
         <item
             android:id="@+id/nav_achiev"
-            android:icon="@drawable/baseline_score_white_24"
+            android:icon="@drawable/score_white"
             android:title="My Profile" />
 
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/baseline_settings_white_24"
+            android:icon="@drawable/settings_white"
             android:title="Setting" />
 
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/baseline_face_white_24"
+            android:icon="@drawable/face_white"
             android:title="About Us" />
 
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/baseline_exit_to_app_white_24"
+            android:icon="@drawable/exit_to_app_white"
             android:title="Log Out" />
     </group>
 

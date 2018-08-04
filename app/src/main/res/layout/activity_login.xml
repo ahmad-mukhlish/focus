@@ -48,7 +48,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo" />
+                android:src="@mipmap/ic_launcher" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/baseline_person_white_24" />
+                    android:src="@drawable/person_white" />
 
                 <EditText
                     android:id="@+id/edUsername"
@@ -91,7 +91,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/outline_lock_white_24" />
+                    android:src="@drawable/lock_white" />
 
                 <EditText
                     android:id="@+id/edPassword"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/button1"
+                android:background="@xml/button1"
                 android:text="@string/login"
                 android:theme="@style/CustomButton" />
 

@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
         PrimaryDrawerItem aboutUs = new PrimaryDrawerItem().
                 withIdentifier(1).
                 withName(R.string.drawer_about_us)
-                .withIcon(R.mipmap.about_us);
+                .withIcon(R.drawable.about_us);
 
         PrimaryDrawerItem help = new PrimaryDrawerItem().
                 withIdentifier(1).
                 withName(R.string.drawer_cara_bayar)
-                .withIcon(R.mipmap.help);
+                .withIcon(R.drawable.help);
 
 
         mDrawer = new DrawerBuilder()

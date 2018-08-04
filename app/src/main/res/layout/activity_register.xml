@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
-            android:background="@drawable/button1"
+            android:background="@xml/button1"
             android:text="@string/sign_up"
             android:theme="@style/CustomButton" />
 

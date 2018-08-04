@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:background="@drawable/button1"
+        android:background="@xml/button1"
         android:text="@string/send_pass"
         android:theme="@style/CustomButton"/>
 
