@@ -7,7 +7,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -30,12 +29,16 @@ import com.programmerbaper.fokus.R;
 import cn.iwgang.countdownview.CountdownView;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static NotificationManager mNotificationManager;
+    public static Boolean mIsFocus = false;
+
+
     private CountdownView mCountDown;
     private Button mStart;
 
     private Context mContext;
     private Activity mActivity;
-    private NotificationManager mNotificationManager;
 
     private Drawer mDrawer;
 
@@ -146,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 mStart.setVisibility(View.GONE);
                 mCountDown.setVisibility(View.VISIBLE);
                 mCountDown.start(convertJamToMilisecond(mJam));
+                mIsFocus = true;
                 changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_NONE);
                 mCountDown.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
                     @Override
@@ -153,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this,
                                 "The focus time has ended", Toast.LENGTH_LONG).show();
                         changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_ALL);
+                        mIsFocus = false;
 
                     }
                 });
@@ -173,14 +178,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     protected void changeInterruptionFiler(int interruptionFilter) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-            if (mNotificationManager.isNotificationPolicyAccessGranted()) {
-                mNotificationManager.setInterruptionFilter(interruptionFilter);
-            } else {
-                Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-                startActivity(intent);
-            }
+        if (mNotificationManager.isNotificationPolicyAccessGranted()) {
+            mNotificationManager.setInterruptionFilter(interruptionFilter);
+        } else {
+            Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+            startActivity(intent);
         }
     }
 
