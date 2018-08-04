@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.programmerbaper.focus.entities.Jam;
+import com.programmerbaper.focus.entities.Clock;
 import com.programmerbaper.focus.networking.QueryUtils;
 import com.programmerbaper.fokus.R;
 
@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Password tidak cocok", Toast.LENGTH_SHORT).show();
                 }
                 else
-                    new RegisterAsyncTask(getBaseContext()).execute(Jam.BASE_PATH + Jam.POST_REGISTER);
+                    new RegisterAsyncTask(getBaseContext()).execute(Clock.BASE_PATH + Clock.POST_REGISTER);
             }
 
 

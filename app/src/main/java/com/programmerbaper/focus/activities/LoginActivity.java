@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -22,7 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.programmerbaper.focus.entities.Jam;
+import com.programmerbaper.focus.entities.Clock;
 import com.programmerbaper.focus.entities.User;
 import com.programmerbaper.focus.networking.QueryUtils;
 import com.programmerbaper.fokus.R;
@@ -82,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 @Override
                 public void onClick(View v) {
-                    new LoginAsyncTask(LoginActivity.this).execute(Jam.BASE_PATH + Jam.POST_AUTH);
+                    new LoginAsyncTask(LoginActivity.this).execute(Clock.BASE_PATH + Clock.POST_AUTH);
                 }
             });
         } else {

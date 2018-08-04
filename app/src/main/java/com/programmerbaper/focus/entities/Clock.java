@@ -1,6 +1,6 @@
 package com.programmerbaper.focus.entities;
 
-public class Jam {
+public class Clock {
 
     public static final String BASE_PATH = "https://fokus.gurisa.com/api/v0/";
     public static final String GET_TRAYEK = "routes";
@@ -11,25 +11,25 @@ public class Jam {
     public static final String GET_TIKET_2 = "/details";
 
 
-    private int jam ;
-    private int menit ;
-    private int detik ;
+    private int hours;
+    private int minutes;
+    private int seconds;
 
-    public Jam(int jam, int menit, int detik) {
-        this.jam = jam;
-        this.menit = menit;
-        this.detik = detik;
+    public Clock(int jam, int menit, int detik) {
+        this.hours = jam;
+        this.minutes = menit;
+        this.seconds = detik;
     }
 
-    public int getJam() {
-        return jam;
+    public int getHours() {
+        return hours;
     }
 
-    public int getMenit() {
-        return menit;
+    public int getMinutes() {
+        return minutes;
     }
 
-    public int getDetik() {
-        return detik;
+    public int getSeconds() {
+        return seconds;
     }
 }
