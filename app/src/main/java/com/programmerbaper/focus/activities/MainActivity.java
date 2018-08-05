@@ -42,9 +42,10 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext = MainActivity.this;
     private CountdownView mCountDown;
     private Button mStart;
+    private Button mCancel;
     private Drawer mDrawer;
     private Toolbar mToolBar;
-    private TextView mMessage ;
+    private RelativeLayout mFocus;
     private AHBottomNavigation mBottomNavigation;
 
 
@@ -68,8 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Binding views
         mStart = findViewById(R.id.start);
+        mCancel = findViewById(R.id.cancel);
         mCountDown = findViewById(R.id.count_down);
-        mMessage = findViewById(R.id.focus_message);
+        mFocus = findViewById(R.id.focus);
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,23 +215,21 @@ public class MainActivity extends AppCompatActivity {
                 mStart.setVisibility(View.GONE);
                 mToolBar.setVisibility(View.GONE);
                 mBottomNavigation.setVisibility(View.GONE);
-                mMessage.setVisibility(View.VISIBLE);
-
+                mFocus.setVisibility(View.VISIBLE);
                 mCountDown.setVisibility(View.VISIBLE);
                 mCountDown.start(convertJamToMilisecond(clock));
+                mCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        endFocus(true);
+                    }
+                });
                 mIsFocus = true;
                 changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_NONE);
                 mCountDown.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
                     @Override
                     public void onEnd(CountdownView cv) {
-                        Toast.makeText(MainActivity.this,
-                                "The focus time has ended", Toast.LENGTH_LONG).show();
-                        changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_ALL);
-                        mIsFocus = false;
-                        mStart.setVisibility(View.VISIBLE);
-                        mToolBar.setVisibility(View.VISIBLE);
-                        mBottomNavigation.setVisibility(View.VISIBLE);
-                        mMessage.setVisibility(View.GONE);
+                        endFocus(false);
                     }
                 });
 
@@ -293,11 +293,30 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder.setNegativeButton(R.string.no,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // If you choose to not enable the notification listener
-                        // the app. will not work as expected
                     }
                 });
         return (alertDialogBuilder.create());
+    }
+
+    private void endFocus(boolean cancel) {
+
+        if (cancel)
+
+            Toast.makeText(MainActivity.this,
+                    "You've canceled the focus time", Toast.LENGTH_LONG).show();
+
+        else
+
+            Toast.makeText(MainActivity.this,
+                    "The focus time has ended", Toast.LENGTH_LONG).show();
+
+
+        changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_ALL);
+        mIsFocus = false;
+        mStart.setVisibility(View.VISIBLE);
+        mToolBar.setVisibility(View.VISIBLE);
+        mBottomNavigation.setVisibility(View.VISIBLE);
+        mFocus.setVisibility(View.GONE);
     }
 
     private String createStartMessage(Clock clock) {
