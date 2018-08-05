@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.programmerbaper.focus.activities.MainActivity">
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:elevation="4dp"
+        android:elevation="12dp"
         android:theme="@style/ToolBarStyle"
         app:contentInsetEnd="0dp"
         app:contentInsetLeft="0dp"
@@ -33,10 +33,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@color/colorPrimary"
-            android:fontFamily="@font/roboto_thin"
+            android:background="@drawable/button1"
+            android:elevation="8dp"
             android:text="@string/btn_start"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:theme="@style/CustomButton" />
 
         <cn.iwgang.countdownview.CountdownView
             android:id="@+id/count_down"
@@ -59,4 +60,13 @@
             app:timeTextSize="40sp" />
 
     </RelativeLayout>
-</LinearLayout>
+
+
+    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
+
+</android.support.design.widget.CoordinatorLayout>
+

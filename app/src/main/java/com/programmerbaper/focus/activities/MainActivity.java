@@ -11,13 +11,14 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.ikovac.timepickerwithseconds.MyTimePickerDialog;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -80,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
         //Init navigation drawer
         new DrawerBuilder().withActivity(this).build();
         createNavigationDrawer(savedInstanceState);
+
+        //Init bottom navigation
+        createBottomNav();
 
 
     }
@@ -156,12 +160,30 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-            TextView email = mDrawer.getHeader().findViewById(R.id.email) ;
-            email.setText(LoginActivity.user.getEmail());
+        TextView email = mDrawer.getHeader().findViewById(R.id.email);
+
+//            email.setText(LoginActivity.user.getEmail());
 
 
+    }
 
 
+    private void createBottomNav() {
+
+        AHBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
+
+        AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.label_home, R.drawable.home_white, R.color.primary);
+        AHBottomNavigationItem todo = new AHBottomNavigationItem(R.string.label_todo, R.drawable.todo_white, R.color.primary);
+        AHBottomNavigationItem achievement = new AHBottomNavigationItem(R.string.label_achievement, R.drawable.achievement_white, R.color.primary);
+        AHBottomNavigationItem statistic = new AHBottomNavigationItem(R.string.label_statistic, R.drawable.statistic_white, R.color.primary);
+
+
+        bottomNavigation.addItem(home);
+        bottomNavigation.addItem(todo);
+        bottomNavigation.addItem(achievement);
+        bottomNavigation.addItem(statistic);
+
+        bottomNavigation.setColored(true);
     }
 
     private void askTime() {

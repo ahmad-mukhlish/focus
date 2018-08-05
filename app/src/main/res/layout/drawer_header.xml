@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="190dp"
-    android:background="#646060"
+    android:background="@color/backgroundLogin"
     android:orientation="vertical">
 
     <ImageView
