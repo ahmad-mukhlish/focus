@@ -36,4 +36,9 @@
     <string name="notification_listener_service_explanation">"For the the app. to work you need to enable the Notification Listener Service. Enable it now?"</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="label_todo">Todo</string>
+    <string name="label_achievement">Achievement</string>
+    <string name="label_statistic">Statistic</string>
+    <string name="label_setting">Setting</string>
+    <string name="label_logout">Logout</string>
 </resources>

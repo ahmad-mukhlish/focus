@@ -91,7 +91,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/lock_white" />
+                    android:src="@drawable/password_white" />
 
                 <EditText
                     android:id="@+id/edPassword"

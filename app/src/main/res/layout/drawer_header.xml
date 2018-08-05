@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="190dp"
     android:background="#646060"
@@ -9,25 +10,25 @@
         android:id="@+id/dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_margin="20dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_margin="20dp"
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:text="Email@email.com"
         android:layout_below="@+id/dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/roboto_medium"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/roboto_medium"/>
+        android:textSize="14sp"
+        tools:text="Email@email.com" />
 
     <android.support.v7.widget.AppCompatSpinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/email"
-        android:layout_below="@+id/dp"/>
+        android:layout_below="@+id/dp"
+        android:layout_toEndOf="@+id/email" />
 </RelativeLayout>

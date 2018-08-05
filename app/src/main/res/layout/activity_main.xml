@@ -7,10 +7,26 @@
     android:orientation="vertical"
     tools:context="com.programmerbaper.focus.activities.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ToolBarStyle"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:subtitleTextColor="#FFFFFF"
+        app:titleTextColor="#FFFFFF" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <Button
             android:id="@+id/start"

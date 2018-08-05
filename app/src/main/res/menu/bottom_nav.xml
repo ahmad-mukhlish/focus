@@ -11,21 +11,21 @@
     <item
         android:id="@+id/bnav_todo"
         android:enabled="true"
-        android:icon="@drawable/event_white"
+        android:icon="@drawable/todo_white"
         android:title="To Do"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/bnav_achiev"
         android:enabled="true"
-        android:icon="@drawable/score_white"
+        android:icon="@drawable/achievement_white"
         android:title="Achievement"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/bnav_about"
         android:enabled="true"
-        android:icon="@drawable/face_white"
+        android:icon="@drawable/statistic_white"
         android:title="About Us"
         app:showAsAction="always" />
 </menu>

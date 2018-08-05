@@ -9,10 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ikovac.timepickerwithseconds.MyTimePickerDialog;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private CountdownView mCountDown;
     private Button mStart;
     private Drawer mDrawer;
+    private Toolbar mToolBar;
 
 
     private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
@@ -68,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Set Toolbar
+        mToolBar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(mToolBar);
+        setTitle("Home");
+
         //Init navigation drawer
         new DrawerBuilder().withActivity(this).build();
         createNavigationDrawer(savedInstanceState);
@@ -77,15 +86,36 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNavigationDrawer(Bundle savedInstanceState) {
 
-        PrimaryDrawerItem aboutUs = new PrimaryDrawerItem().
+        PrimaryDrawerItem todo = new PrimaryDrawerItem().
                 withIdentifier(1).
+                withName(R.string.label_todo)
+                .withIcon(R.drawable.todo_grey);
+
+        PrimaryDrawerItem achievement = new PrimaryDrawerItem().
+                withIdentifier(2).
+                withName(R.string.label_achievement)
+                .withIcon(R.drawable.achievement_grey);
+
+        PrimaryDrawerItem statistic = new PrimaryDrawerItem().
+                withIdentifier(3).
+                withName(R.string.label_statistic)
+                .withIcon(R.drawable.statistic_grey);
+
+        PrimaryDrawerItem setting = new PrimaryDrawerItem().
+                withIdentifier(4).
+                withName(R.string.label_setting)
+                .withIcon(R.drawable.settings_grey);
+
+        PrimaryDrawerItem logout = new PrimaryDrawerItem().
+                withIdentifier(5).
+                withName(R.string.label_logout)
+                .withIcon(R.drawable.logout_grey);
+
+
+        PrimaryDrawerItem aboutUs = new PrimaryDrawerItem().
+                withIdentifier(6).
                 withName(R.string.drawer_about_us)
                 .withIcon(R.drawable.about_us);
-
-        PrimaryDrawerItem help = new PrimaryDrawerItem().
-                withIdentifier(1).
-                withName(R.string.drawer_cara_bayar)
-                .withIcon(R.drawable.help);
 
 
         mDrawer = new DrawerBuilder()
@@ -94,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
                 .withDrawerGravity(Gravity.START)
                 .withSavedInstance(savedInstanceState)
                 .withSelectedItem(-1)
-                .addDrawerItems(help, aboutUs, new DividerDrawerItem()
+                .withToolbar(mToolBar)
+                .addDrawerItems(todo, achievement, statistic, setting, logout, aboutUs, new DividerDrawerItem()
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -124,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+
+            TextView email = mDrawer.getHeader().findViewById(R.id.email) ;
+            email.setText(LoginActivity.user.getEmail());
+
+
 
 
     }
@@ -279,6 +315,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "You've failed to focus...", Toast.LENGTH_LONG).show();
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawer.isDrawerOpen())
+            mDrawer.closeDrawer();
+        else
+            Toast.makeText(this, "You've reached the main menu", Toast.LENGTH_SHORT).show();
     }
 }
 

@@ -139,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (status) {
                         Toast.makeText(mContext, "Login Sukses", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
                     } else
                         Toast.makeText(getBaseContext(), "Username atau password tidak dikenal", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
