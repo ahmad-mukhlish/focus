@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mStart;
     private Drawer mDrawer;
     private Toolbar mToolBar;
+    private TextView mMessage ;
+    private AHBottomNavigation mBottomNavigation;
 
 
     private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
@@ -66,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         //Binding views
         mStart = findViewById(R.id.start);
         mCountDown = findViewById(R.id.count_down);
+        mMessage = findViewById(R.id.focus_message);
+
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createBottomNav() {
 
-        AHBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
+        mBottomNavigation = findViewById(R.id.bottom_navigation);
 
         AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.label_home, R.drawable.home_white, R.color.primary);
         AHBottomNavigationItem todo = new AHBottomNavigationItem(R.string.label_todo, R.drawable.todo_white, R.color.primary);
@@ -178,12 +183,12 @@ public class MainActivity extends AppCompatActivity {
         AHBottomNavigationItem statistic = new AHBottomNavigationItem(R.string.label_statistic, R.drawable.statistic_white, R.color.primary);
 
 
-        bottomNavigation.addItem(home);
-        bottomNavigation.addItem(todo);
-        bottomNavigation.addItem(achievement);
-        bottomNavigation.addItem(statistic);
+        mBottomNavigation.addItem(home);
+        mBottomNavigation.addItem(todo);
+        mBottomNavigation.addItem(achievement);
+        mBottomNavigation.addItem(statistic);
 
-        bottomNavigation.setColored(true);
+        mBottomNavigation.setColored(true);
     }
 
     private void askTime() {
@@ -206,6 +211,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 mStart.setVisibility(View.GONE);
+                mToolBar.setVisibility(View.GONE);
+                mBottomNavigation.setVisibility(View.GONE);
+                mMessage.setVisibility(View.VISIBLE);
+
                 mCountDown.setVisibility(View.VISIBLE);
                 mCountDown.start(convertJamToMilisecond(clock));
                 mIsFocus = true;
@@ -218,7 +227,9 @@ public class MainActivity extends AppCompatActivity {
                         changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_ALL);
                         mIsFocus = false;
                         mStart.setVisibility(View.VISIBLE);
-                        mCountDown.setVisibility(View.GONE);
+                        mToolBar.setVisibility(View.VISIBLE);
+                        mBottomNavigation.setVisibility(View.VISIBLE);
+                        mMessage.setVisibility(View.GONE);
                     }
                 });
 
