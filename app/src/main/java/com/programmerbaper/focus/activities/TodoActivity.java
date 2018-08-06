@@ -6,11 +6,14 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.programmerbaper.focus.adapters.TodoRecycleAdapter;
 import com.programmerbaper.focus.entities.Clock;
 import com.programmerbaper.focus.entities.Todo;
@@ -33,7 +36,8 @@ public class TodoActivity extends AppCompatActivity {
 
     private ArrayList<Todo> mTodos;
     private AHBottomNavigation mBottomNavigation;
-
+    private Drawer mDrawer;
+    private Toolbar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,14 @@ public class TodoActivity extends AppCompatActivity {
         mBottomNavigation = findViewById(R.id.bottom_navigation);
         MainActivity.createBottomNav(this, mBottomNavigation);
 
+        //Set Toolbar
+        mToolBar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(mToolBar);
+
+        //Init navigation drawer
+        new DrawerBuilder().withActivity(this).build();
+        mDrawer = MainActivity.createNavigationDrawer(savedInstanceState, mToolBar, this);
+
         new TodoAsyncTask().execute(Clock.BASE_PATH + Clock.GET_USER + LoginActivity.user.getId() + Clock.GET_TODO);
 
     }
@@ -51,6 +63,8 @@ public class TodoActivity extends AppCompatActivity {
 
         ProgressBar mProgress = findViewById(R.id.progressBar);
         mProgress.setVisibility(View.GONE);
+        mToolBar.setVisibility(View.VISIBLE);
+        mBottomNavigation.setVisibility(View.VISIBLE);
 
         if (!tikets.isEmpty()) {
             TodoRecycleAdapter tiketRecycleAdapter =

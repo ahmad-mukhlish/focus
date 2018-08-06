@@ -22,7 +22,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -43,15 +42,16 @@
 
         <activity
             android:name="com.programmerbaper.focus.activities.TodoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.programmerbaper.focus.activities.AchievementActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.programmerbaper.focus.activities.StatisticActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.programmerbaper.focus.activities.AboutUsActivity"
             android:parentActivityName="com.programmerbaper.focus.activities.MainActivity" />
-        <activity android:name="com.programmerbaper.focus.activities.AchievementActivity"
-            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity"/>
-        <activity android:name="com.programmerbaper.focus.activities.StatisticActivity"
-            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity"/>
-        <activity android:name="com.programmerbaper.focus.activities.SettingActivity"
-            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity"/>
-        <activity android:name="com.programmerbaper.focus.activities.AboutUsActivity"
-            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity"/>
     </application>
 
 </manifest>

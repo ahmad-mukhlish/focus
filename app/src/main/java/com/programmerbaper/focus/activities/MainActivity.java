@@ -1,5 +1,6 @@
 package com.programmerbaper.focus.activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.ComponentName;
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Init navigation drawer
         new DrawerBuilder().withActivity(this).build();
-        createNavigationDrawer(savedInstanceState);
+        mDrawer = createNavigationDrawer(savedInstanceState, mToolBar, this);
 
         //Init bottom navigation
         createBottomNav(this, mBottomNavigation);
@@ -94,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void createNavigationDrawer(Bundle savedInstanceState) {
+    public static Drawer createNavigationDrawer(Bundle savedInstanceState, Toolbar toolBar, final Activity activity) {
+
+        Drawer drawer;
 
         PrimaryDrawerItem todo = new PrimaryDrawerItem().
                 withIdentifier(1).
@@ -111,11 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 withName(R.string.label_statistic)
                 .withIcon(R.drawable.statistic_grey);
 
-        PrimaryDrawerItem setting = new PrimaryDrawerItem().
-                withIdentifier(4).
-                withName(R.string.label_setting)
-                .withIcon(R.drawable.settings_grey);
-
         PrimaryDrawerItem logout = new PrimaryDrawerItem().
                 withIdentifier(5).
                 withName(R.string.label_logout)
@@ -128,14 +126,14 @@ public class MainActivity extends AppCompatActivity {
                 .withIcon(R.drawable.about_us);
 
 
-        mDrawer = new DrawerBuilder()
-                .withActivity(this)
+        drawer = new DrawerBuilder()
+                .withActivity(activity)
                 .withHeader(R.layout.drawer_header)
                 .withDrawerGravity(Gravity.START)
                 .withSavedInstance(savedInstanceState)
                 .withSelectedItem(-1)
-                .withToolbar(mToolBar)
-                .addDrawerItems(todo, achievement, statistic, setting, logout, aboutUs, new DividerDrawerItem()
+                .withToolbar(toolBar)
+                .addDrawerItems(todo, achievement, statistic, logout, aboutUs, new DividerDrawerItem()
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -143,33 +141,29 @@ public class MainActivity extends AppCompatActivity {
                         switch (position) {
 
                             case 1: {
-                                startActivity(new Intent(MainActivity.this, TodoActivity.class));
+                                activity.startActivity(new Intent(activity, TodoActivity.class));
                                 break;
                             }
 
                             case 2: {
-                                startActivity(new Intent(MainActivity.this, AchievementActivity.class));
+                                activity.startActivity(new Intent(activity, AchievementActivity.class));
                                 break;
                             }
 
                             case 3: {
-                                startActivity(new Intent(MainActivity.this, StatisticActivity.class));
+                                activity.startActivity(new Intent(activity, StatisticActivity.class));
                                 break;
                             }
+
 
                             case 4: {
-                                startActivity(new Intent(MainActivity.this, SettingActivity.class));
-                                break;
-                            }
-
-                            case 5: {
-                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                                activity.startActivity(new Intent(activity, LoginActivity.class));
                                 LoginActivity.user = null;
                                 break;
                             }
 
-                            case 6: {
-                                startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+                            case 5: {
+                                activity.startActivity(new Intent(activity, AboutUsActivity.class));
                                 break;
                             }
 
@@ -180,10 +174,11 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-        TextView email = mDrawer.getHeader().findViewById(R.id.email);
+         TextView email = drawer.getHeader().findViewById(R.id.email);
 
         email.setText(LoginActivity.user.getEmail());
 
+        return drawer;
 
     }
 
