@@ -22,27 +22,40 @@
 
 
             <TextView
-                android:id="@+id/namaTodo"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Dago - Halim Perdana Kusuma"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Lari 10 KM"
                 android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
 
             <TextView
-                android:id="@+id/tarif"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@id/namaTodo"
                 android:layout_marginEnd="3dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                tool:text="18 Juni" />
+
+            <TextView
+                android:id="@+id/clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/name"
+                android:layout_marginEnd="3dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/primary_dark"
                 android:textSize="15sp"
-                tool:text="Rp. 170. 000" />
+                tool:text="10.05" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

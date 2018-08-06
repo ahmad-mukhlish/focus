@@ -16,16 +16,16 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.programmerbaper.focus.activities.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.programmerbaper.focus.activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.programmerbaper.focus.activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="com.programmerbaper.focus.activities.RegisterActivity"
             android:parentActivityName="com.programmerbaper.focus.activities.LoginActivity" />
@@ -41,7 +41,17 @@
             </intent-filter>
         </service>
 
-        <activity android:name="com.programmerbaper.focus.activities.TodoActivity"></activity>
+        <activity
+            android:name="com.programmerbaper.focus.activities.TodoActivity"
+            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity" />
+        <activity android:name="com.programmerbaper.focus.activities.AchievementActivity"
+            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity"/>
+        <activity android:name="com.programmerbaper.focus.activities.StatisticActivity"
+            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity"/>
+        <activity android:name="com.programmerbaper.focus.activities.SettingActivity"
+            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity"/>
+        <activity android:name="com.programmerbaper.focus.activities.AboutUsActivity"
+            android:parentActivityName="com.programmerbaper.focus.activities.MainActivity"/>
     </application>
 
 </manifest>

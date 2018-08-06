@@ -7,8 +7,8 @@ public class Clock {
     public static final String POST_REGISTER = "auth/register";
     public static final String POST_AUTH = "auth/login" ;
     public static final String POST_TRANSACTION = "transactions" ;
-    public static final String GET_TIKET = "users/";
-    public static final String GET_TIKET_2 = "/details";
+    public static final String GET_USER = "users/";
+    public static final String GET_TODO = "/tasks";
 
 
     private int hours;

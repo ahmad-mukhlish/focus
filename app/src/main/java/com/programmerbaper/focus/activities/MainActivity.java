@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -35,22 +36,18 @@ import cn.iwgang.countdownview.CountdownView;
 public class MainActivity extends AppCompatActivity {
 
 
+    private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
+    private static final String ACTION_NOTIFICATION_LISTENER_SETTINGS = "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS";
     public static NotificationManager mNotificationManager;
     public static Boolean mIsFocus = false;
 
-
-    private Context mContext = MainActivity.this;
+    private AHBottomNavigation mBottomNavigation;
     private CountdownView mCountDown;
     private Button mStart;
     private Button mCancel;
     private Drawer mDrawer;
     private Toolbar mToolBar;
     private RelativeLayout mFocus;
-    private AHBottomNavigation mBottomNavigation;
-
-
-    private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
-    private static final String ACTION_NOTIFICATION_LISTENER_SETTINGS = "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +62,15 @@ public class MainActivity extends AppCompatActivity {
 
         //Activate notification manager and notification service
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        startService(new Intent(mContext, NotificationService.class));
+        startService(new Intent(this, NotificationService.class));
 
         //Binding views
         mStart = findViewById(R.id.start);
         mCancel = findViewById(R.id.cancel);
         mCountDown = findViewById(R.id.count_down);
         mFocus = findViewById(R.id.focus);
+        mBottomNavigation = findViewById(R.id.bottom_navigation);
+
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         createNavigationDrawer(savedInstanceState);
 
         //Init bottom navigation
-        createBottomNav();
+        createBottomNav(this, mBottomNavigation);
 
 
     }
@@ -144,19 +143,33 @@ public class MainActivity extends AppCompatActivity {
                         switch (position) {
 
                             case 1: {
-
+                                startActivity(new Intent(MainActivity.this, TodoActivity.class));
+                                break;
                             }
 
                             case 2: {
-
+                                startActivity(new Intent(MainActivity.this, AchievementActivity.class));
+                                break;
                             }
 
                             case 3: {
-
+                                startActivity(new Intent(MainActivity.this, StatisticActivity.class));
+                                break;
                             }
 
                             case 4: {
+                                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                                break;
+                            }
 
+                            case 5: {
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                                LoginActivity.user = null;
+                                break;
+                            }
+
+                            case 6: {
+                                startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                                 break;
                             }
 
@@ -169,28 +182,84 @@ public class MainActivity extends AppCompatActivity {
 
         TextView email = mDrawer.getHeader().findViewById(R.id.email);
 
-//            email.setText(LoginActivity.user.getEmail());
+        email.setText(LoginActivity.user.getEmail());
 
 
     }
 
 
-    private void createBottomNav() {
+    public static void createBottomNav(final Context context, final AHBottomNavigation ahBottomNavigation) {
 
-        mBottomNavigation = findViewById(R.id.bottom_navigation);
 
         AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.label_home, R.drawable.home_white, R.color.primary);
         AHBottomNavigationItem todo = new AHBottomNavigationItem(R.string.label_todo, R.drawable.todo_white, R.color.primary);
         AHBottomNavigationItem achievement = new AHBottomNavigationItem(R.string.label_achievement, R.drawable.achievement_white, R.color.primary);
         AHBottomNavigationItem statistic = new AHBottomNavigationItem(R.string.label_statistic, R.drawable.statistic_white, R.color.primary);
 
+        ahBottomNavigation.addItem(home);
+        ahBottomNavigation.addItem(todo);
+        ahBottomNavigation.addItem(achievement);
+        ahBottomNavigation.addItem(statistic);
 
-        mBottomNavigation.addItem(home);
-        mBottomNavigation.addItem(todo);
-        mBottomNavigation.addItem(achievement);
-        mBottomNavigation.addItem(statistic);
+        if (context instanceof MainActivity)
+            ahBottomNavigation.setCurrentItem(0);
+        else if (context instanceof TodoActivity)
+            ahBottomNavigation.setCurrentItem(1);
+        else if (context instanceof AchievementActivity)
+            ahBottomNavigation.setCurrentItem(2);
+        else if (context instanceof StatisticActivity)
+            ahBottomNavigation.setCurrentItem(3);
 
-        mBottomNavigation.setColored(true);
+
+        ahBottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+
+            @Override
+            public boolean onTabSelected(final int position, boolean wasSelected) {
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (position) {
+
+                            case 0: {
+                                if (!(context instanceof MainActivity)) {
+                                    context.startActivity(new Intent(context, MainActivity.class));
+                                }
+                                break;
+                            }
+
+                            case 1: {
+                                if (!(context instanceof TodoActivity)) {
+                                    context.startActivity(new Intent(context, TodoActivity.class));
+                                }
+                                break;
+                            }
+
+                            case 2: {
+                                if (!(context instanceof AchievementActivity)) {
+                                    context.startActivity(new Intent(context, AchievementActivity.class));
+                                }
+                                break;
+                            }
+
+                            case 3: {
+                                if (!(context instanceof StatisticActivity)) {
+                                    context.startActivity(new Intent(context, StatisticActivity.class));
+                                }
+                                break;
+                            }
+
+
+                        }
+
+                    }
+                }, 100);
+                return true;
+            }
+        });
+
+
+        ahBottomNavigation.setColored(true);
     }
 
     private void askTime() {

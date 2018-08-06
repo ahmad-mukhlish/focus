@@ -34,7 +34,9 @@ public class TodoRecycleAdapter extends RecyclerView.Adapter<TodoRecycleAdapter.
     @Override
     public void onBindViewHolder(TodoViewHolder holder, int position) {
         Todo todoNow = mTodos.get(position);
-        holder.mNama.setText(todoNow.getName());
+        holder.mName.setText(todoNow.getName());
+        holder.mClock.setText(todoNow.getClock().getHours() + "" + todoNow.getClock().getMinutes()) ;
+        holder.mDate.setText(todoNow.getDate());
 
     }
 
@@ -44,13 +46,14 @@ public class TodoRecycleAdapter extends RecyclerView.Adapter<TodoRecycleAdapter.
     }
 
     public static class TodoViewHolder extends RecyclerView.ViewHolder {
-        private TextView mNama, mTarif, mTanggal;
+        private TextView mName, mClock, mDate;
         private View mRootView;
 
         public TodoViewHolder(View itemView) {
             super(itemView);
-            mNama = itemView.findViewById(R.id.namaTodo);
-            mTarif = itemView.findViewById(R.id.tarif);
+            mName = itemView.findViewById(R.id.name);
+            mClock = itemView.findViewById(R.id.clock);
+            mDate = itemView.findViewById(R.id.date);
             mRootView = itemView;
         }
     }
